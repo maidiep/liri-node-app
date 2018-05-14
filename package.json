@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/maidiep/liri-node-app#readme",
   "dependencies": {
-    "dotenv": "^5.0.1"
+    "dotenv": "^5.0.1",
+    "twitter": "^1.7.1"
   }
 }
