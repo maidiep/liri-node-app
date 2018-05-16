@@ -7,6 +7,7 @@ var Twitter = require ("twitter");
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
+function myTweets(){
 var params = {screen_name: 'devShortStack'};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
   if (!error) {
@@ -16,3 +17,6 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
     }
   }
 }) 
+}
+
+myTweets();
