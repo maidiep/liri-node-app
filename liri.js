@@ -64,10 +64,11 @@ function mySpotify() {
       }
       var firstTrack = data.tracks.items[0];
       // console.log(data);
-      console.log(firstTrack.external_urls.spotify);
-      console.log(firstTrack.name);
-      console.log(firstTrack.artists[0].name);
-      console.log(firstTrack.album.name);
+      console.log("Artist: " + firstTrack.artists[0].name);
+      console.log("Song Title: " + firstTrack.name);
+      console.log("From album: " + firstTrack.album.name);
+      console.log("Song Preview: " + firstTrack.external_urls.spotify);
+      console.log("------------------------------------------------------------------");
     }
   );
 }
