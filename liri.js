@@ -11,8 +11,9 @@ var request = require("request");
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
+// switch and cases
 switch (command) {
-  case "my-spotify":
+  case "spotify-this-song":
     mySpotify();
     break;
 
@@ -38,10 +39,11 @@ function myTweets() {
   ) {
     if (!error) {
       for (var i = 0; i < tweets.length; i++) {
-        console.log(tweets[i].text);
-        console.log(tweets[i].created_at);
+        console.log("On " + tweets[i].created_at);
+        console.log("You tweeted: " + tweets[i].text);
+        console.log("------------------------------------------------------------------");
       }
-    } else console.log(error);
+    } else console.log("There was an error" + error);
   });
 }
 
