@@ -29,6 +29,7 @@ switch (command) {
     console.log("error");
     break;
 }
+
 // Twitter function to grab tweets
 function myTweets() {
   var params = { screen_name: "devShortStack" };
@@ -47,21 +48,20 @@ function myTweets() {
   });
 }
 
-//execute this funtion when command is my-tweets
-// if (command === "my-tweets") {
-//   myTweets();
-// }
 
-//function to grab songs info from Spotify
-// need to disply artist, song title, preview link of song, and album song is from
+//function to grab top search from Spotify
+//need to disply artist, song title, preview link of song, and album song is from
 function mySpotify() {
   var songTitle = process.argv[3];
+  
+  // code came from https://www.npmjs.com/package/node-spotify-api
   spotify.search(
     { type: "track", query: songTitle || "All the Small Things", limit: 5 },
     function(err, data) {
       if (err) {
         return console.log("Error occurred: " + err);
       }
+
       var firstTrack = data.tracks.items[0];
       // console.log(data);
       console.log("Artist: " + firstTrack.artists[0].name);
@@ -73,12 +73,11 @@ function mySpotify() {
   );
 }
 
-// if (command === "my-spotify") {
-//   mySpotify();
-// }
-
-// Grab the movieName which will always be the third node argument.
+//function to access imbd api
+//Grab the movieName which will always be the third node argument.
+//Need to display: title, year, imbdRating, RottenTomato Rating, country produced, language, plot, actors
 function movieThis() {
+  // if no movie is specified, it will default to Mr. Nobody
   var movieName = process.argv[3] || "Mr. Nobody";
 
   // Then run a request to the OMDB API with the movie specified
@@ -88,10 +87,11 @@ function movieThis() {
   request(queryUrl, function(error, response, body) {
     // If the request is successful
     if (!error && response.statusCode === 200) {
-      // Parse the body of the site and recover just the imdbRating
-      // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-      console.log("Release Year: " + JSON.parse(body).Year);
-      console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+      // Parse the body of the site 
+      console.log("Movie Title: " + JSON.parse(body).Title);
+      console.log("Year Released: " + JSON.parse(body).Year);
+      console.log("The imbd rating is: " + JSON.parse(body).imdbRating);
+      console.log("The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value);
     }
   });
 }
