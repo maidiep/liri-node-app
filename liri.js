@@ -92,6 +92,7 @@ function movieThis() {
       console.log("Year Released: " + JSON.parse(body).Year);
       console.log("The imbd rating is: " + JSON.parse(body).imdbRating);
       console.log("The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value);
+      console.log("It was produced in: " + JSON.parse(body).Country);
     }
   });
 }
