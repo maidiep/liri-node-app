@@ -13,12 +13,12 @@ var client = new Twitter(keys.twitter);
 
 // switch and cases
 switch (command) {
-  case "spotify-this-song":
-    mySpotify();
-    break;
-
   case "my-tweets":
     myTweets();
+    break;
+
+  case "spotify-this-song":
+    mySpotify();
     break;
 
   case "movie-this":
@@ -42,18 +42,19 @@ function myTweets() {
       for (var i = 0; i < tweets.length; i++) {
         console.log("On " + tweets[i].created_at);
         console.log("You tweeted: " + tweets[i].text);
-        console.log("------------------------------------------------------------------");
+        console.log(
+          "------------------------------------------------------------------"
+        );
       }
     } else console.log("There was an error" + error);
   });
 }
 
-
 //function to grab top search from Spotify
 //need to disply artist, song title, preview link of song, and album song is from
 function mySpotify() {
   var songTitle = process.argv[3];
-  
+
   // code came from https://www.npmjs.com/package/node-spotify-api
   spotify.search(
     { type: "track", query: songTitle || "All the Small Things", limit: 5 },
@@ -68,7 +69,9 @@ function mySpotify() {
       console.log("Song Title: " + firstTrack.name);
       console.log("From album: " + firstTrack.album.name);
       console.log("Song Preview: " + firstTrack.external_urls.spotify);
-      console.log("------------------------------------------------------------------");
+      console.log(
+        "------------------------------------------------------------------"
+      );
     }
   );
 }
@@ -87,11 +90,13 @@ function movieThis() {
   request(queryUrl, function(error, response, body) {
     // If the request is successful
     if (!error && response.statusCode === 200) {
-      // Parse the body of the site 
+      // Parse the body of the site
       console.log("Movie Title: " + JSON.parse(body).Title);
       console.log("Year Released: " + JSON.parse(body).Year);
       console.log("The imbd rating is: " + JSON.parse(body).imdbRating);
-      console.log("The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value);
+      console.log(
+        "The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value
+      );
       console.log("It was produced in: " + JSON.parse(body).Country);
       console.log("Available in these languages: " + JSON.parse(body).Language);
       console.log("The plot: " + JSON.parse(body).Plot);
