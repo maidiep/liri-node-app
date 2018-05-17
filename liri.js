@@ -6,6 +6,7 @@ var Spotify = require("node-spotify-api");
 var Twitter = require("twitter");
 var command = process.argv[2];
 var request = require("request");
+var fs = require("fs");
 
 //Constructors
 var spotify = new Spotify(keys.spotify);
@@ -25,6 +26,10 @@ switch (command) {
     movieThis();
     break;
 
+  case "do-what-it-says":
+  doWhatItSays();
+  break;
+
   default:
     console.log("error");
     break;
@@ -40,13 +45,12 @@ function myTweets() {
   ) {
     if (!error) {
       for (var i = 0; i < tweets.length; i++) {
+        console.log("------------------------------------------------------------------");
         console.log("On " + tweets[i].created_at);
         console.log("You tweeted: " + tweets[i].text);
-        console.log(
-          "------------------------------------------------------------------"
-        );
+        console.log("------------------------------------------------------------------");
       }
-    } else console.log("There was an error" + error);
+    } else console.log("There was an error: " + error);
   });
 }
 
@@ -64,14 +68,14 @@ function mySpotify() {
       }
 
       var firstTrack = data.tracks.items[0];
+      // console.log(firstTrack);
       // console.log(data);
+      console.log("------------------------------------------------------------------");
       console.log("Artist: " + firstTrack.artists[0].name);
       console.log("Song Title: " + firstTrack.name);
       console.log("From album: " + firstTrack.album.name);
       console.log("Song Preview: " + firstTrack.external_urls.spotify);
-      console.log(
-        "------------------------------------------------------------------"
-      );
+      console.log("------------------------------------------------------------------");
     }
   );
 }
@@ -91,16 +95,31 @@ function movieThis() {
     // If the request is successful
     if (!error && response.statusCode === 200) {
       // Parse the body of the site
+      console.log(
+        "------------------------------------------------------------------"
+      );
       console.log("Movie Title: " + JSON.parse(body).Title);
       console.log("Year Released: " + JSON.parse(body).Year);
       console.log("The imbd rating is: " + JSON.parse(body).imdbRating);
-      console.log(
-        "The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value
-      );
+      console.log("The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value);
       console.log("It was produced in: " + JSON.parse(body).Country);
       console.log("Available in these languages: " + JSON.parse(body).Language);
       console.log("The plot: " + JSON.parse(body).Plot);
       console.log("Actors in movie: " + JSON.parse(body).Actors);
+      console.log(
+        "------------------------------------------------------------------"
+      );
     }
   });
 }
+
+//function for do what it says by using commands in random.txt file
+function doWhatItSays() {
+  fs.readFile("random.txt", "utf8", function(error, data){
+  if (error) {
+    return console.log(error);
+  }
+  console.log(data);
+})};
+
+
