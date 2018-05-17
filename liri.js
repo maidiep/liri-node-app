@@ -95,6 +95,7 @@ function movieThis() {
       console.log("It was produced in: " + JSON.parse(body).Country);
       console.log("Available in these languages: " + JSON.parse(body).Language);
       console.log("The plot: " + JSON.parse(body).Plot);
+      console.log("Actors in movie: " + JSON.parse(body).Actors);
     }
   });
 }
