@@ -93,6 +93,8 @@ function movieThis() {
       console.log("The imbd rating is: " + JSON.parse(body).imdbRating);
       console.log("The Rotten Tomatoes rating is: " + JSON.parse(body).Ratings[1].Value);
       console.log("It was produced in: " + JSON.parse(body).Country);
+      console.log("Available in these languages: " + JSON.parse(body).Language);
+      console.log("The plot: " + JSON.parse(body).Plot);
     }
   });
 }
