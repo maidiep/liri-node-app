@@ -54,6 +54,11 @@ function myTweets() {
       }
     } else console.log("There was an error: " + error);
   });
+  // logging input to log.txt
+  fs.appendFile("log.txt", null, function(err) {
+    if (err) throw err;
+  });
+
 }
 
 //function to grab top search from Spotify
@@ -117,14 +122,15 @@ function movieThis() {
 
 //function for do what it says by using commands in random.txt file
 function doWhatItSays() {
-  fs.readFile("random.txt", "utf8", function(error, data){
+  
+  fs.readFile("random.txt", "utf8", function(error, data) {
   if (error) {
-    console.log(error);
+    return console.log(error);
   }
   console.log(data);
 
-  randomArr = data.split(",");
-  getRandom(randomArr[0], randomArr[1]);
+  var dataArr = data.split(",");
+console.log(dataArr);
   
 })};
 
