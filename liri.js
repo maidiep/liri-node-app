@@ -12,6 +12,7 @@ var fs = require("fs");
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
+
 // switch and cases
 switch (command) {
   case "my-tweets":
@@ -33,7 +34,8 @@ switch (command) {
   default:
     console.log("error");
     break;
-}
+};
+
 
 // Twitter function to grab tweets
 function myTweets() {
@@ -71,8 +73,8 @@ function mySpotify() {
       // console.log(firstTrack);
       // console.log(data);
       console.log("------------------------------------------------------------------");
-      console.log("Artist: " + firstTrack.artists[0].name);
       console.log("Song Title: " + firstTrack.name);
+      console.log("Artist: " + firstTrack.artists[0].name);
       console.log("From album: " + firstTrack.album.name);
       console.log("Song Preview: " + firstTrack.external_urls.spotify);
       console.log("------------------------------------------------------------------");
@@ -117,9 +119,13 @@ function movieThis() {
 function doWhatItSays() {
   fs.readFile("random.txt", "utf8", function(error, data){
   if (error) {
-    return console.log(error);
+    console.log(error);
   }
   console.log(data);
+
+  randomArr = data.split(",");
+  getRandom(randomArr[0], randomArr[1]);
+  
 })};
 
 
