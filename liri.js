@@ -32,7 +32,7 @@ switch (command) {
   break;
 
   default:
-    console.log("error");
+    console.log("Enter one of the commands: \nmy-tweets\nspotify-this-song \'song title\'\nmovie-this \'movie title\'");
     break;
 };
 
@@ -54,11 +54,6 @@ function myTweets() {
       }
     } else console.log("There was an error: " + error);
   });
-  // logging input to log.txt
-  fs.appendFile("log.txt", null, function(err) {
-    if (err) throw err;
-  });
-
 }
 
 //function to grab top search from Spotify
@@ -120,18 +115,25 @@ function movieThis() {
   });
 }
 
-//function for do what it says by using commands in random.txt file
-function doWhatItSays() {
-  
-  fs.readFile("random.txt", "utf8", function(error, data) {
-  if (error) {
-    return console.log(error);
-  }
-  console.log(data);
 
-  var dataArr = data.split(",");
-console.log(dataArr);
-  
-})};
+////// NOT WORKING /////////////
+//I want doWhatItSays to read command from random.txt and execute the my-spotify function
+
+//function for do what it says by using random.txt file
+// function doWhatItSays() {
+//   fs.readFile("random.txt", "utf8", function(error, data){
+//       console.log(data);
+//       if (error) {
+//           return console.log(error);
+//       }
+//       else{
+//           // Then split it by commas (to make it more readable)
+//           var dataArr = data.split(",").join;  
+//           console.log(dataArr);
+//           mySpotify();
+        
+//       }
+//   });
+// };
 
 
